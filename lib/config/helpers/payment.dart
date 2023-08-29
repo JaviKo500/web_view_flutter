@@ -22,9 +22,11 @@ class Payment {
     // const url =
     //     'http://10.0.2.2:8080/kushki/pay?id=4834&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE';
     const url =
-        'http://0.0.0.0:8080/kushki/pay?id=4834&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE';
+        'http://10.0.2.2:8080/afinia/pay?access_token=vyHez2mMKLWC9v3sqTq0lNk1Dcw9asyi&id=1593&is_web=false';
     const urlW =
-        'http://0.0.0.0:8080/kushki/pay?id=4834&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE&is_web=true';
+        'http://0.0.0.0:8080/afinia/pay?access_token=vyHez2mMKLWC9v3sqTq0lNk1Dcw9asyi&id=1536&is_web=true';
+    // _dio.options.headers["ngrok-skip-browser-warning"] = "69420";
+
     final response = await _dio
         .get(url);
     if (kDebugMode) {

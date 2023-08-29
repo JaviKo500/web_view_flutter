@@ -48,6 +48,7 @@ class _WebViewXPageState extends State<WebViewXPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       child: Center(
           child: Container(
@@ -58,6 +59,7 @@ class _WebViewXPageState extends State<WebViewXPage> {
         child: WebViewX(
           key: const ValueKey('webviewx'),
           initialContent: widget.html,
+          // initialContent: iframeHtml,
           initialSourceType: SourceType.html,
           height: screenSize.height - 100,
           width: 500,
