@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:web_view_test/domain/response.dart';
@@ -21,23 +22,22 @@ class _WebViewXPageState extends State<WebViewXPage> {
   Future<void> openUrl(String urlString) async {
     final Uri url = Uri.parse(urlString);
     await launchUrl(url);
-     if ( Platform.isAndroid) {
-
-        if (await canLaunchUrl(url)) {
-          await launchUrl(
-            url,
-            mode: LaunchMode.externalApplication,
-          );
-        } else {
-          throw 'No se pudo abrir la URL';
-        }
+    if (Platform.isAndroid) {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(
+          url,
+          mode: LaunchMode.externalApplication,
+        );
       } else {
-         if (await canLaunchUrl(url)) {
-          await launchUrl(url);
-        } else {
-          throw 'No se pudo abrir la URL';
-        }
+        throw 'No se pudo abrir la URL';
       }
+    } else {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url);
+      } else {
+        throw 'No se pudo abrir la URL';
+      }
+    }
   }
 
   @override
@@ -48,6 +48,9 @@ class _WebViewXPageState extends State<WebViewXPage> {
 
   @override
   Widget build(BuildContext context) {
+    final String webFrame = '''
+        <iframe src="http://10.0.2.2:8080/alignet/payurl?id=17157&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE" width="800" height="800"></iframe>
+    ''';
 
     return Container(
       child: Center(
@@ -58,12 +61,14 @@ class _WebViewXPageState extends State<WebViewXPage> {
         ),
         child: WebViewX(
           key: const ValueKey('webviewx'),
-          initialContent: widget.html,
-          // initialContent: iframeHtml,
+          // initialContent: 'http://10.0.2.2:8080/alignet/pay?id=17157&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE',
+          // initialContent: widget.html,
+          initialContent: webFrame,
           initialSourceType: SourceType.html,
+
           height: screenSize.height - 100,
           width: 500,
-          
+
           // width: double.infinity,
           onWebViewCreated: (controller) => webviewController = controller,
           onPageStarted: (src) =>
@@ -150,7 +155,16 @@ class _WebViewXPageState extends State<WebViewXPage> {
           },
           webSpecificParams: const WebSpecificParams(
             printDebugInfo: true,
-            additionalSandboxOptions: ['allow-top-navigation-by-user-activation', 'allow-forms']
+            // additionalSandboxOptions: ['allow-top-navigation', 'allow-forms']
+            additionalSandboxOptions: [
+              'allow-downloads', 'allow-forms', 
+              'allow-modals', 'allow-orientation-lock', 
+              'allow-pointer-lock', 'allow-popups', 
+              'allow-popups-to-escape-sandbox', 
+              'allow-presentation', 'allow-same-origin', 
+              'allow-scripts', 
+              'allow-top-navigation',
+            ]
           ),
           mobileSpecificParams: const MobileSpecificParams(
             debuggingEnabled: true,
