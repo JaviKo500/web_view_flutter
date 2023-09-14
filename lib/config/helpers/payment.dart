@@ -22,11 +22,11 @@ class Payment {
     // const url =
     //     'http://10.0.2.2:8080/kushki/pay?id=4834&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE';
     const url =
-        'http://0.0.0.0:8080/kushki/pay?id=4834&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE';
+        'http://10.0.2.2:8055/payphone/pay?id=5646&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE';
     const urlW =
-        'http://0.0.0.0:8080/kushki/pay?id=4834&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE&is_web=true';
+        'http://localhost:8055/alignet/pay?id=16865&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE&is_web=true';
     final response = await _dio
-        .get(url);
+        .get(urlW);
     if (kDebugMode) {
       print(response.data);
     }

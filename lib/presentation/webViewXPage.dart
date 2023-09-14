@@ -61,6 +61,7 @@ class _WebViewXPageState extends State<WebViewXPage> {
           initialSourceType: SourceType.html,
           height: screenSize.height - 100,
           width: 500,
+          
           // width: double.infinity,
           onWebViewCreated: (controller) => webviewController = controller,
           onPageStarted: (src) =>
@@ -147,6 +148,7 @@ class _WebViewXPageState extends State<WebViewXPage> {
           },
           webSpecificParams: const WebSpecificParams(
             printDebugInfo: true,
+            additionalSandboxOptions: ['allow-top-navigation-by-user-activation', 'allow-forms']
           ),
           mobileSpecificParams: const MobileSpecificParams(
             debuggingEnabled: true,
