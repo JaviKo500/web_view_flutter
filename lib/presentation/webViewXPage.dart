@@ -48,10 +48,6 @@ class _WebViewXPageState extends State<WebViewXPage> {
 
   @override
   Widget build(BuildContext context) {
-    final String webFrame = '''
-        <iframe src="http://10.0.2.2:8080/alignet/payurl?id=17157&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE" width="800" height="800"></iframe>
-    ''';
-
     return Container(
       child: Center(
           child: Container(
@@ -63,7 +59,7 @@ class _WebViewXPageState extends State<WebViewXPage> {
           key: const ValueKey('webviewx'),
           // initialContent: 'http://10.0.2.2:8080/alignet/pay?id=17157&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE',
           // initialContent: widget.html,
-          initialContent: webFrame,
+          initialContent: widget.html,
           initialSourceType: SourceType.html,
 
           height: screenSize.height - 100,

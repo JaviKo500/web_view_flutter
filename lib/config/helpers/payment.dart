@@ -22,11 +22,12 @@ class Payment {
     // const url =
     //     'http://10.0.2.2:8080/kushki/pay?id=4834&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE';
     const url =
-        'http://10.0.2.2:8080/alignet/pay?id=17157&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE';
+        'http://10.0.2.2:8080/pagoplux/pay?id=123995&access_token=30llB4iLTK08Fxw9U-x4bSLFpPZYO_Bw';
     const urlW =
-        'http://0.0.0.0:8080/alignet/pay?id=17155&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE&is_web=true';
+        'http://0.0.0.0:8080/pagoplux/pay?id=123999&access_token=30llB4iLTK08Fxw9U-x4bSLFpPZYO_Bw';
+        // 'http://0.0.0.0:8080/pagoplux/pay?id=123927&access_token=30llB4iLTK08Fxw9U-x4bSLFpPZYO_Bw&is_web=false';
     final response = await _dio
-        .get(url);
+        .get(urlW);
     if (kDebugMode) {
       print(response.data);
     }
