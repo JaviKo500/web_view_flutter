@@ -22,12 +22,12 @@ class Payment {
     // const url =
     //     'http://10.0.2.2:8080/kushki/pay?id=4834&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE';
     const url =
-        'http://10.0.2.2:8080/pagoplux/pay?id=123995&access_token=30llB4iLTK08Fxw9U-x4bSLFpPZYO_Bw';
+        'http://10.0.2.2:8080/place_to_pay/pay?id=262698&access_token=B-uBL9WO9Rcby3NuKLPe7T6bbzsY5LGR';
     const urlW =
-        'http://0.0.0.0:8080/pagoplux/pay?id=123999&access_token=30llB4iLTK08Fxw9U-x4bSLFpPZYO_Bw';
-        // 'http://0.0.0.0:8080/pagoplux/pay?id=123927&access_token=30llB4iLTK08Fxw9U-x4bSLFpPZYO_Bw&is_web=false';
+        // 'http://0.0.0.0:8080/pagoplux/pay?id=126858&access_token=30llB4iLTK08Fxw9U-x4bSLFpPZYO_Bw';
+        'http://0.0.0.0:8080/place_to_pay/pay?id=262666&access_token=B-uBL9WO9Rcby3NuKLPe7T6bbzsY5LGR&is_web=true';
     final response = await _dio
-        .get(urlW);
+        .get(url);
     if (kDebugMode) {
       print(response.data);
     }
