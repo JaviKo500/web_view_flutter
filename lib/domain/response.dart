@@ -21,7 +21,7 @@ class Response {
         this.url,
     });
 
-    factory Response.fromRawJson(String str) => Response.fromJson(json.decode(str));
+    factory Response.fromRawJson(dynamic str) => Response.fromJson(json.decode(str));
 
     String toRawJson() => json.encode(toJson());
 
