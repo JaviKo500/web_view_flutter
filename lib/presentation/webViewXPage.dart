@@ -9,8 +9,9 @@ import 'package:web_view_test/domain/response.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
 class WebViewXPage extends StatefulWidget {
-  const WebViewXPage({Key? key, required this.html}) : super(key: key);
+  const WebViewXPage({Key? key, required this.html, this.url}) : super(key: key);
   final String html;
+  final String? url;
   @override
   State<WebViewXPage> createState() => _WebViewXPageState();
 }
@@ -18,6 +19,30 @@ class WebViewXPage extends StatefulWidget {
 class _WebViewXPageState extends State<WebViewXPage> {
   late WebViewXController webviewController;
   Size get screenSize => MediaQuery.of(context).size;
+  bool get _isAppleWeb =>
+      kIsWeb &&
+      widget.url != null &&
+      widget.url!.contains('place_to_pay') &&
+      (defaultTargetPlatform == TargetPlatform.iOS ||
+          defaultTargetPlatform == TargetPlatform.macOS);
+
+  bool _navigated = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (_isAppleWeb && !_navigated) {
+      _navigated = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        final uri = Uri.parse('${widget.url!}&apple=true');
+        await launchUrl(
+          uri,
+          mode: LaunchMode.platformDefault,
+          webOnlyWindowName: '_self',
+        );
+      });
+    }
+  }
 
   Future<void> openUrl(String urlString) async {
     final Uri url = Uri.parse(urlString);
@@ -48,6 +73,9 @@ class _WebViewXPageState extends State<WebViewXPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (_isAppleWeb) {
+      return const Placeholder();
+    }
     return Container(
       child: Center(
           child: Container(
@@ -153,11 +181,15 @@ class _WebViewXPageState extends State<WebViewXPage> {
             printDebugInfo: true,
             // additionalSandboxOptions: ['allow-top-navigation', 'allow-forms']
             additionalSandboxOptions: [
-              'allow-downloads', 'allow-forms', 
-              'allow-modals', 'allow-orientation-lock', 
-              'allow-pointer-lock', 'allow-popups', 
+              'allow-downloads', 
+              'allow-forms', 
+              'allow-modals', 
+              'allow-orientation-lock', 
+              'allow-pointer-lock', 
+              'allow-popups', 
               'allow-popups-to-escape-sandbox', 
-              'allow-presentation', 'allow-same-origin', 
+              'allow-presentation', 
+              'allow-same-origin', 
               'allow-scripts', 
               'allow-top-navigation',
             ]
