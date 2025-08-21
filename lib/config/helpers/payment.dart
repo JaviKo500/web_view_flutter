@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:web_view_test/config/constants.dart';
 
 class Payment {
   final _dio = Dio();
@@ -14,7 +15,6 @@ class Payment {
   //   }
   //   return response.data ?? '';
   // }
-
   Future<String> getPayment() async {
     // final response = await _dio.get('http://0.0.0.0:8080/deuna/pay?id=2442&is_web=true');
     // final response = await _dio.get('http://0.0.0.0:8080/deuna/pay?id=2442');
@@ -22,12 +22,12 @@ class Payment {
     // const url =
     //     'http://10.0.2.2:8080/kushki/pay?id=4834&access_token=iibG1PAH-6gTIMXnblIxFc6O8L6v7-dE';
     const url =
-        'http://10.0.2.2:8080/place_to_pay/pay?id=262698&access_token=B-uBL9WO9Rcby3NuKLPe7T6bbzsY5LGR';
+        '$baseUrl/place_to_pay/pay?id=$orderId&access_token=$tokenClient&is_web=true';
     const urlW =
         // 'http://0.0.0.0:8080/pagoplux/pay?id=126858&access_token=30llB4iLTK08Fxw9U-x4bSLFpPZYO_Bw';
-        'http://0.0.0.0:8080/place_to_pay/pay?id=262666&access_token=B-uBL9WO9Rcby3NuKLPe7T6bbzsY5LGR&is_web=true';
+        '$baseUrl/place_to_pay/pay?id=$orderId&access_token=$tokenClient&is_web=false';
     final response = await _dio
-        .get(url);
+        .get(url, options: Options(headers: {"ngrok-skip-browser-warning": "69420"}));
     if (kDebugMode) {
       print(response.data);
     }
