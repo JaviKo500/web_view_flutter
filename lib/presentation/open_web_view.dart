@@ -55,7 +55,7 @@ class _OpenWebViewState extends State<OpenWebView> {
                 context: context, 
                 builder: (context) => WebViewXPage(
                   html: html,
-                  url: '$baseUrl/place_to_pay/pay?id=$orderId&access_token=$tokenClient',
+                  // url: '$baseUrl/place_to_pay/pay?id=$orderId&access_token=$tokenClient',
                 ),
               );
             });

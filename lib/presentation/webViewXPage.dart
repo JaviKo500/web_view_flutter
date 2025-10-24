@@ -165,6 +165,16 @@ class _WebViewXPageState extends State<WebViewXPage> {
                 // Navigator.of(context).pop();
               },
             ),
+            DartCallback(
+              name: 'logger',
+              callBack: (message) {
+                if (kDebugMode) {
+                  print('test print logger');
+                  print(message);
+                }
+                // Navigator.of(context).pop();
+              },
+            ),
           },
           jsContent: const {
             EmbeddedJsContent(
